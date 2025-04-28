@@ -2,3 +2,5 @@ results/*
 
 *.swo
 *.swp
+/venv/
+nohup.out
