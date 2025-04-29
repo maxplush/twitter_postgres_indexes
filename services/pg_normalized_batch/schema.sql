@@ -53,7 +53,7 @@ CREATE TABLE tweets (
 
 CREATE TABLE tweet_urls (
     id_tweets BIGINT,
-    urls TEXT
+    url TEXT
 );
 
 
@@ -71,7 +71,7 @@ COMMENT ON TABLE tweet_tags IS 'This table links both hashtags and cashtags';
 
 CREATE TABLE tweet_media (
     id_tweets BIGINT,
-    urls TEXT,
+    url TEXT,
     type TEXT
 );
 
