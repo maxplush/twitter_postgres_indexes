@@ -3,24 +3,16 @@
  */
 
 SELECT
-    '#' || tag AS hashtag,
-    COUNT(*) AS usage_count
-FROM (
-    SELECT DISTINCT
-        data->>'id' AS tweet_id,
-        jsonb_array_elements_text(
-            COALESCE(
-                data->'extended_tweet'->'entities'->'hashtags',
-                data->'entities'->'hashtags',
-                '[]'::jsonb
-            )
-        )::jsonb ->> 'text' AS tag
-    FROM tweets_jsonb
-    WHERE
-        data->'entities'->'hashtags' @@ '$[*].text == "coronavirus"'
-        OR data->'extended_tweet'->'entities'->'hashtags' @@ '$[*].text == "coronavirus"'
-) AS hashtags_data
+    '#' || (jsonb_array_elements(
+        COALESCE(data->'entities'->'hashtags', '[]') ||
+        COALESCE(data->'extended_tweet'->'entities'->'hashtags', '[]')
+    )->>'text') AS tag,
+    COUNT(DISTINCT data->>'id') AS count
+FROM tweets_jsonb
+WHERE COALESCE(data->'entities'->'hashtags', '[]') ||
+      COALESCE(data->'extended_tweet'->'entities'->'hashtags', '[]')
+      @> '[{"text": "coronavirus"}]'
 GROUP BY tag
-ORDER BY usage_count DESC, tag
+ORDER BY count DESC, tag
 LIMIT 1000;
 
