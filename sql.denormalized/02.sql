@@ -4,13 +4,13 @@
 
 SELECT
     '#' || (jsonb_array_elements(
-        COALESCE(data->'entities'->'hashtags', '[]') ||
-        COALESCE(data->'extended_tweet'->'entities'->'hashtags', '[]')
+        COALESCE(data->'extended_tweet'->'entities'->'hashtags', '[]') ||
+        COALESCE(data->'entities'->'hashtags', '[]')
     )->>'text') AS tag,
     COUNT(DISTINCT data->>'id') AS count
 FROM tweets_jsonb
-WHERE COALESCE(data->'entities'->'hashtags', '[]') ||
-      COALESCE(data->'extended_tweet'->'entities'->'hashtags', '[]')
+WHERE COALESCE(data->'extended_tweet'->'entities'->'hashtags', '[]') ||
+      COALESCE(data->'entities'->'hashtags', '[]')
       @> '[{"text": "coronavirus"}]'
 GROUP BY tag
 ORDER BY count DESC, tag
