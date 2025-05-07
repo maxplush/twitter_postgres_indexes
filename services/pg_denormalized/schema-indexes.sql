@@ -1,5 +1,6 @@
-SET max_parallel_maintenance_workers TO 80;
-SET maintenance_work_mem TO '16 GB';
+SET max_parallel_maintenance_workers TO 4;
+SET maintenance_work_mem TO '1GB';
+
 
 CREATE INDEX idx_hashtags_entities ON tweets_jsonb
 USING GIN((data->'entities'->'hashtags'));
