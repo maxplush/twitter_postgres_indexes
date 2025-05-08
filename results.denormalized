@@ -1,6 +1,9 @@
 nohup: ignoring input
-time="2025-05-05T10:00:10-07:00" level=warning msg="/home/mplush3/proj/twitter_postgres_indexes/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
-sql.denormalized/01.sql canceled
-Command exited with non-zero status 130
-0.70user 0.25system 48:03.02elapsed 0%CPU (0avgtext+0avgdata 41600maxresident)k
-0inputs+8outputs (0major+9224minor)pagefaults 0swaps
+time="2025-05-07T23:59:21-07:00" level=warning msg="/home/mplush3/proj/twitter_postgres_indexes/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+sql.denormalized/01.sql pass
+sql.denormalized/02.sql pass
+sql.denormalized/03.sql pass
+sql.denormalized/04.sql pass
+sql.denormalized/05.sql pass
+0.07user 0.05system 0:51.37elapsed 0%CPU (0avgtext+0avgdata 40960maxresident)k
+0inputs+16outputs (0major+8772minor)pagefaults 0swaps

@@ -4,7 +4,7 @@
 
 SELECT
     hashtag AS tag,
-    COUNT(*) AS total_count
+    COUNT(*) AS count
 FROM (
     SELECT DISTINCT
         data->>'id' AS tweet_id,
@@ -19,6 +19,6 @@ FROM (
     AND data->>'lang' = 'en'
 ) AS distinct_hashtags
 GROUP BY hashtag
-ORDER BY total_count DESC, hashtag
+ORDER BY count DESC, hashtag
 LIMIT 1000;
 
